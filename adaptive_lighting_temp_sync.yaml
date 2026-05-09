@@ -1,0 +1,33 @@
+adaptive_lighting_temp_sync:
+  name: My Adaptive Lighting Temp Sync
+  version: '1.0'
+  author: Andrew DeMartino
+  description: Sync adaptive lighting color temp with light cards color
+  type: Module
+  editor: ''
+  supported:
+    - button
+  creator: Andrew DeMartino
+  link: ''
+  imageUrl: ''
+  code: |2-
+      /* slider */
+      .bubble-range-fill {
+        background-color: ${
+          state  === 'on' 
+          ? 'rgb(' + hass.states['sensor.adaptive_lighting_current_rgb_color'].state + ')' 
+          : 'rgba(0,0,0,0.2)'
+        } !important;
+        opacity: 0.6 !important;
+        filter: saturate(1.0); /* boost saturation to look nicer */
+      }
+
+      /* Icon */
+      .bubble-icon {
+        color: ${
+          state  === 'on' 
+          ? 'rgb(' + hass.states['sensor.adaptive_lighting_current_rgb_color'].state + ')' 
+          : 'var(--primary-text-color)'
+        } !important;
+      }
+  is_global: true
