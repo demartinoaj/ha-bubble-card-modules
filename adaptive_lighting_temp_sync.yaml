@@ -1,8 +1,8 @@
 adaptive_lighting_temp_sync:
-  name: My Adaptive Lighting Temp Sync
-  version: '1.0'
+  name: Adaptive Lighting Temp Sync
+  version: '1.1'
   author: Andrew DeMartino
-  description: Sync adaptive lighting color temp with light cards color
+  description: Set light card color to match adaptive lighting color temperature. Card color temperature will change throughout the day as adaptive lighting color temperature does.
   type: Module
   editor: ''
   supported:
@@ -11,21 +11,19 @@ adaptive_lighting_temp_sync:
   link: ''
   imageUrl: ''
   code: |2-
-      /* slider */
+      /* Slider */
       .bubble-range-fill {
         background-color: ${
-          state  === 'on' 
-          ? 'rgb(' + hass.states['sensor.adaptive_lighting_current_rgb_color'].state + ')' 
-          : 'rgba(0,0,0,0.2)'
+          'rgb(' + hass.states['sensor.adaptive_lighting_current_rgb_color'].state + ')' 
         } !important;
-        opacity: 0.6 !important;
+        opacity: 0.6 !important; /* add opacity to look nicer */
         filter: saturate(1.0); /* boost saturation to look nicer */
       }
 
       /* Icon */
       .bubble-icon {
         color: ${
-          state  === 'on' 
+          state === 'on' 
           ? 'rgb(' + hass.states['sensor.adaptive_lighting_current_rgb_color'].state + ')' 
           : 'var(--primary-text-color)'
         } !important;
